@@ -1,11 +1,10 @@
-import { useState } from "react";
 import NavBar from "../component/NavBar";
 
-export default function Home() {
+export default function Potato() {
   return (
     <div>
       <NavBar />
-      <h1>hello</h1>
+      <h1>About</h1>
     </div>
   );
 }
