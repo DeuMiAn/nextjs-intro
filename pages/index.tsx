@@ -7,32 +7,12 @@ function getMovies() {
   return fetch(`/api/movies`).then((response) => response.json());
 }
 
-export default function Home() {
-  // const [movies, setMovies] = useState();
-  // useEffect(() => {
-  //   (async () => {
-  //     const { results } = await (
-  //       await fetch(
-  //         `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
-  //         {
-  //           method: "GET",
-  //           // headers: {
-  //           //   Authorization: ` Bearer ${API_KEY}`,
-  //           //   accept: "application/json",
-  //           // },
-  //         }
-  //       )
-  //     ).json();
-  //     setMovies(results);
-  //   })();
-  // }, []);
-  const { data, isLoading } = useQuery(["movies", "popular"], getMovies);
-
+export default function Home({ results }) {
   return (
     <div className="container">
       <Seo title="Home" />
-      {isLoading && <h4>Loading...</h4>}
-      {data?.results.map((movie) => (
+      {/* {isLoading && <h4>Loading...</h4>} */}
+      {results?.map((movie) => (
         <div className="movie" key={movie.id}>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <h4>{movie.original_title}</h4>
@@ -61,4 +41,15 @@ export default function Home() {
       `}</style>
     </div>
   );
+}
+export async function getServerSideProps() {
+  //함수명 무조건 이걸로해야지 서버사이드렌더링 됨
+  const { results } = await (
+    await fetch(`http://localhost:3000/api/movies`)
+  ).json();
+  return {
+    props: {
+      results,
+    },
+  };
 }
