@@ -8,7 +8,6 @@ export default function App({ Component, pageProps }) {
     <QueryClientProvider client={client}>
       <Layout>
         <Component {...pageProps}></Component>
-        <span>hello</span>
       </Layout>
     </QueryClientProvider>
   );
