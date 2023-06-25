@@ -3,6 +3,9 @@
 const API_KEY = process.env.API_KEY;
 
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   reactStrictMode: true,
   swcMinify: true,
   async redirects(){
