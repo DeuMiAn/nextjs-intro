@@ -31,3 +31,4 @@ jobs:
           context: .
           push: true
           tags: 9atlas/movie-web:1.2
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
