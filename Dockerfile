@@ -7,6 +7,9 @@ ENV NODE_ENV production
 COPY package*.json ./
 COPY yarn.lock ./
 
+# .env.local 환경변수 셋팅
+RUN echo "API_KEY=${API_KEY}" > .env.local
+
 # Install dependencies
 RUN yarn install
 
